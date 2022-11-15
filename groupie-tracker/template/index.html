@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Groupie tracker</title>
+    <link rel="shortcut icon" href="../static/ico.ico" type="image/x-icon">
+    <style>
+      header{
+        text-align: center;
+      }
+      header:hover{
+        cursor:default;
+      }
+      .Groups{
+        display: flex; 
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .group{
+        background: #5f6a72;
+        padding: 10px;
+        width: 250px;
+        margin: 0 10px 10px 0;
+        text-align: center;
+        border-radius: 8px;
+      }
+      .group img{
+        border-radius: 8px;
+      }
+      .group a{
+        text-decoration:none; 
+        color:white;
+      }
+      .group label:hover{
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Groupie tracker</h1>
+    </header>
+    <div class="Groups">
+      {{ range . }}
+          <div class="group" >
+            
+            <img src="{{.Image}}" id="{{.Id}}" alt="{{.Name}}">
+            <a href="/artist/ID={{.Id}}"><label for="{{.Id}}">{{.Name}}</label></a>
+          </div>
+      {{ end }}
+    </div>
+  </body>
+</html>

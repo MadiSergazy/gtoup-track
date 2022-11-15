@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Groupie tracker</title>
+    <style>
+      
+      header{
+        text-align: center;
+      }
+      header a{
+        text-decoration: none;
+        color:black;
+      }
+      header:hover{
+        cursor:default;
+      }
+      .group{
+        display: flex;
+        margin: auto;
+        background-color: yellowgreen;
+        width: 250px;
+        align-items: center;
+        flex-direction: column;
+      }
+      .group img{
+        margin: 20px ;
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1><a href="/">Groupie tracker</a></h1>
+    </header>
+    <div class="group">
+        <img src="{{.BaseInfo.Image}}" id="{{.BaseInfo.Id}}" alt="{{.BaseInfo.Name}}" width="200" height="200">
+        <span>{{.BaseInfo.Name}}</span>
+        <dl class="members">
+            <dt>Members:</dt>
+            {{range $member := .BaseInfo.Members}}
+                <dd>{{ $member }}</dd>
+            {{end}}
+            <br>
+            <dt>Creation date:</dt>
+              <dd>{{.BaseInfo.CreationDate}}</dd>
+            <br>
+            <dt>First album:</dt>
+              <dd>{{.BaseInfo.FirstAlbum}}</dd>
+            <dt>Location</dt>
+            <br>
+            {{ range $key, $value:=.Relation.DatesLocations }}
+              <dt>{{$key}}</dt>
+              {{ range $elem :=$value}}
+                  <dd>{{$elem}}</dd>
+              {{end}}
+            {{end}}
+        </dl>
+    </div>
+  </body>
+</html>
